@@ -17,6 +17,7 @@ set (columns_SRCS Column.cpp Column.h
                   ColModified.cpp ColModified.h
                   ColParent.cpp ColParent.h
                   ColProject.cpp ColProject.h
+                  ColProjectHeader.cpp ColProjectHeader.h
                   ColRecur.cpp ColRecur.h
                   ColScheduled.cpp ColScheduled.h
                   ColStart.cpp ColStart.h

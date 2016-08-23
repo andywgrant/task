@@ -40,6 +40,7 @@
 #include <ColModified.h>
 #include <ColParent.h>
 #include <ColProject.h>
+#include <ColProjectHeader.h>
 #include <ColRecur.h>
 #include <ColScheduled.h>
 #include <ColStart.h>
@@ -79,29 +80,30 @@ Column* Column::factory (const std::string& name, const std::string& report)
   }
 
   Column* c;
-       if (column_name == "depends")     c = new ColumnDepends ();
-  else if (column_name == "description") c = new ColumnDescription ();
-  else if (column_name == "due")         c = new ColumnDue ();
-  else if (column_name == "end")         c = new ColumnEnd ();
-  else if (column_name == "entry")       c = new ColumnEntry ();
-  else if (column_name == "id")          c = new ColumnID ();
-  else if (column_name == "imask")       c = new ColumnIMask ();
-  else if (column_name == "mask")        c = new ColumnMask ();
-  else if (column_name == "modified")    c = new ColumnModified ();
-  else if (column_name == "parent")      c = new ColumnParent ();
-  else if (column_name == "project")     c = new ColumnProject ();
-  else if (column_name == "recur")       c = new ColumnRecur ();
-  else if (column_name == "scheduled")   c = new ColumnScheduled ();
-  else if (column_name == "start")       c = new ColumnStart ();
-  else if (column_name == "status")      c = new ColumnStatus ();
-  else if (column_name == "tags")        c = new ColumnTags ();
-  else if (column_name == "until")       c = new ColumnUntil ();
-  else if (column_name == "urgency")     c = new ColumnUrgency ();
-  else if (column_name == "uuid")        c = new ColumnUUID ();
-  else if (column_name == "wait")        c = new ColumnWait ();
+       if (column_name == "depends")        c = new ColumnDepends ();
+  else if (column_name == "description")    c = new ColumnDescription ();
+  else if (column_name == "due")            c = new ColumnDue ();
+  else if (column_name == "end")            c = new ColumnEnd ();
+  else if (column_name == "entry")          c = new ColumnEntry ();
+  else if (column_name == "id")             c = new ColumnID ();
+  else if (column_name == "imask")          c = new ColumnIMask ();
+  else if (column_name == "mask")           c = new ColumnMask ();
+  else if (column_name == "modified")       c = new ColumnModified ();
+  else if (column_name == "parent")         c = new ColumnParent ();
+  else if (column_name == "project")        c = new ColumnProject ();
+  else if (column_name == "projectheader")  c = new ColumnProjectHeader ();
+  else if (column_name == "recur")          c = new ColumnRecur ();
+  else if (column_name == "scheduled")      c = new ColumnScheduled ();
+  else if (column_name == "start")          c = new ColumnStart ();
+  else if (column_name == "status")         c = new ColumnStatus ();
+  else if (column_name == "tags")           c = new ColumnTags ();
+  else if (column_name == "until")          c = new ColumnUntil ();
+  else if (column_name == "urgency")        c = new ColumnUrgency ();
+  else if (column_name == "uuid")           c = new ColumnUUID ();
+  else if (column_name == "wait")           c = new ColumnWait ();
 
   // Special non-task column.
-  else if (column_name == "string")      c = new ColumnString ();
+  else if (column_name == "string")         c = new ColumnString ();
 
   // UDA.
   else if (context.config.get ("uda." + column_name + ".type") != "")
@@ -132,6 +134,7 @@ void Column::factory (std::map <std::string, Column*>& all)
   c = new ColumnModified ();       all[c->_name] = c;
   c = new ColumnParent ();         all[c->_name] = c;
   c = new ColumnProject ();        all[c->_name] = c;
+  c = new ColumnProjectHeader ();  all[c->_name] = c;
   c = new ColumnRecur ();          all[c->_name] = c;
   c = new ColumnScheduled ();      all[c->_name] = c;
   c = new ColumnStart ();          all[c->_name] = c;

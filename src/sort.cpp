@@ -109,13 +109,14 @@ static bool sort_compare (int left, int right)
     }
 
     // String.
-    else if (field == "description" ||
-             field == "project"     ||
-             field == "status"      ||
-             field == "tags"        ||
-             field == "uuid"        ||
-             field == "parent"      ||
-             field == "imask"       ||
+    else if (field == "description"     ||
+             field == "project"         ||
+             field == "projectheader"   ||
+             field == "status"          ||
+             field == "tags"            ||
+             field == "uuid"            ||
+             field == "parent"          ||
+             field == "imask"           ||
              field == "mask")
     {
       const std::string& left_string  = (*global_data)[left].get_ref  (field);

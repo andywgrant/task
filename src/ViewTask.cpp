@@ -329,12 +329,27 @@ std::string ViewTask::render (std::vector <Task>& data, std::vector <int>& seque
 
     // Listing breaks are simply blank lines inserted when a column value
     // changes.
-    if (s > 0 &&
-        _breaks.size () > 0)
+    if (_breaks.size () > 0) // I want to put a Project Header for the first grouping
     {
       for (auto& b : _breaks)
       {
-        if (data[sequence[s - 1]].get (b) != data[sequence[s]].get (b))
+        // Group tasks by project and add a header of the project name
+        if (b == "projectheader")
+        {
+          if (s == 0) // When sorting by project, first grouping has no project
+          {
+            out += "\033[1m\033[4mNo Project\033[0m\033[0m\n";
+          }
+          else if (data[sequence[s - 1]].get ("project") != data[sequence[s]].get ("project"))
+          {
+            out += "\n\033[1m\033[4m" + data[sequence[s]].get ("project") + "\033[0m\033[0m\n";
+            ++_lines;
+
+            // Only want one \n, regardless of how many values change.
+            break;
+          }
+        }
+        if (s > 0 && (data[sequence[s - 1]].get (b) != data[sequence[s]].get (b)))
         {
           out += "\n";
           ++_lines;
@@ -342,6 +357,7 @@ std::string ViewTask::render (std::vector <Task>& data, std::vector <int>& seque
           // Only want one \n, regardless of how many values change.
           break;
         }
+
       }
     }
 
